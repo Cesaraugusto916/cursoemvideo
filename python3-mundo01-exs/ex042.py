@@ -22,3 +22,10 @@ if menor + meio > maior:
     print(f'Os seguimentos {menor}, {meio} e {maior} podem formar triangulo!')
 else:
     print(f'Os seguimentos {menor:}, {meio:} e {maior} NÃO podem formar triangulo')
+
+if menor == meio and meio == maior:
+    print('Seu triângulo será EQUILÁTERO!')
+elif menor == meio or menor == maior or meio == maior:
+    print('Seu triângulo será ISÓCELER!')
+else:
+    print('Seu triângulo será ESCALENO!')
