@@ -33,55 +33,33 @@ def get_inteiro_positivo(prompt):
             print('Entrada inválida. Por favor, digite um NÚMERO INTEIRO (ex: 10).')
             time.sleep(1)
 
-# --- Função para perguntar se deseja continuar (reutilizada) ---
-def perguntar_continuar():
-    while True:
-        try:
-            opcao_str = input('\nDeseja simular outro empréstimo? (1 para SIM / 2 para NÃO): ').strip()
-            opcao = int(opcao_str)
-            if opcao == 1:
-                return True
-            elif opcao == 2:
-                return False
-            else:
-                print('Opção inválida. Digite 1 para SIM ou 2 para NÃO.')
-                time.sleep(1)
-        except ValueError:
-            print('Entrada inválida. Por favor, digite 1 ou 2.')
-            time.sleep(1)
+# --- Corpo Principal do Programa (execução única) ---
+print('\n' + '='*50)
+print('SIMULAÇÃO DE EMPRÉSTIMO')
+print('='*50)
 
-# --- Loop Principal do Programa ---
-while True:
-    print('\n' + '='*50) # Separador para nova simulação
-    print('NOVA SIMULAÇÃO DE EMPRÉSTIMO')
-    print('='*50)
+# --- Solicitação de Entradas com Validação ---
+valor_casa = get_float_positivo('Qual o valor da casa? R$')
+salario = get_float_positivo('Qual é o seu salário mensal? R$')
+anos_pagar = get_inteiro_positivo('Em quantos anos você pretende pagar? ')
 
-    # --- Solicitação de Entradas com Validação ---
-    valor_casa = get_float_positivo('Qual o valor da casa? R$')
-    salario = get_float_positivo('Qual é o seu salário mensal? R$')
-    anos_pagar = get_inteiro_positivo('Em quantos anos você pretende pagar? ')
+# --- Cálculos ---
+meses_pagar = anos_pagar * 12
+prestacao_mensal = valor_casa / meses_pagar
+limite_salario = salario * 0.30 # 30% do salário
 
-    # --- Cálculos ---
-    meses_pagar = anos_pagar * 12
-    prestacao_mensal = valor_casa / meses_pagar
-    limite_salario = salario * 0.30 # 30% do salário
+print(f'\nPara uma casa de R${valor_casa:.2f} a ser paga em {anos_pagar} anos ({meses_pagar} meses):')
+print(f'A prestação mensal será de: R${prestacao_mensal:.2f}')
+print(f'O limite de 30% do seu salário (R${salario:.2f}) é de: R${limite_salario:.2f}')
+time.sleep(2) # Pequena pausa para o usuário ler
 
-    print(f'\nPara uma casa de R${valor_casa:.2f} a ser paga em {anos_pagar} anos ({meses_pagar} meses):')
-    print(f'A prestação mensal será de: R${prestacao_mensal:.2f}')
-    print(f'O limite de 30% do seu salário (R${salario:.2f}) é de: R${limite_salario:.2f}')
-    time.sleep(2) # Pequena pausa para o usuário ler
-
-    # --- Análise e Resultado ---
-    if prestacao_mensal > limite_salario:
-        print('\n--- EMPRÉSTIMO NEGADO ---')
-        print(f'Motivo: A prestação de R${prestacao_mensal:.2f} excede 30% do seu salário.')
-    else:
-        print('\n--- EMPRÉSTIMO APROVADO! ---')
-        print('Parabéns! As condições de pagamento estão dentro do seu limite salarial.')
-
-    # --- Pergunta se o usuário quer continuar ---
-    if not perguntar_continuar():
-        break
+# --- Análise e Resultado ---
+if prestacao_mensal > limite_salario:
+    print('\n--- EMPRÉSTIMO NEGADO ---')
+    print(f'Motivo: A prestação de R${prestacao_mensal:.2f} excede 30% do seu salário.')
+else:
+    print('\n--- EMPRÉSTIMO APROVADO! ---')
+    print('Parabéns! As condições de pagamento estão dentro do seu limite salarial.')
 
 print('\n--- PROGRAMA ENCERRADO ---')
 time.sleep(2)
