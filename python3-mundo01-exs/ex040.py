@@ -40,4 +40,4 @@ else: # Média 7.0 ou superior (m >= 7.0)
     print('Status: APROVADO!')
 
 print('\n--- FIM DA AVALIAÇÃO ---')
-time.sleep(2)0.1
+time.sleep(2)
