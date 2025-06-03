@@ -1,4 +1,4 @@
-import random
+from random import randint
 import time
 
 # --- Melhoria 1: Representação das Jogadas (Mantida) ---
