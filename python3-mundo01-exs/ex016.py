@@ -1,16 +1,18 @@
 import time
-import math # Mantém o import math para trunc
+import math  # Mantém o import math para trunc
+
 
 # --- Função de Validação de Entrada para Números Flutuantes ---
 def get_float_valido(prompt):
     while True:
         try:
-            valor_str = input(prompt).replace(',', '.') # Aceita vírgula como decimal
+            valor_str = input(prompt).replace(',', '.')  # Aceita vírgula como decimal
             valor = float(valor_str)
             return valor
         except ValueError:
             print('Entrada inválida. Por favor, digite um NÚMERO REAL (ex: 6.127 ou 8).')
             time.sleep(1)
+
 
 # --- Corpo Principal do Programa ---
 print('--- EXTRATOR DE PARTE INTEIRA ---')
